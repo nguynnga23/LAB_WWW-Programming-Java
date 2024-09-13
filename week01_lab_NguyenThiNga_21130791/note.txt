@@ -1,0 +1,120 @@
+src
+ └── main
+     ├── java
+     │   └── com
+     │       └── example
+     │           └── myproject
+     │               ├── controllers : Chứa các lớp điều khiển (controller) của ứng dụng. Đây là nơi xử lý các yêu cầu HTTP (GET, POST, PUT, DELETE). Thông thường các lớp này sẽ được đánh dấu bằng annotation @Controller hoặc @RestController.
+     │               │   └── HomeController.java : xử lý các yêu cầu chính từ trang chủ.
+     │               │    └── UserController.java
+     │               │           @RestController
+     │               │           @RequestMapping("/users")
+     │               │            public class UserController {
+     │               │              @Autowired
+     │               │              private UserService userService;
+     │               │
+     │               │              @GetMapping("/{id}")
+     │               │               public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
+     │               │                   UserDTO user = userService.getUserById(id);
+     │               │                   return ResponseEntity.ok(user);
+     │               │               }
+     │               │
+     │               │               @PostMapping
+     │               │               public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+     │               │                   UserDTO createdUser = userService.createUser(userDTO);
+     │               │                   return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+     │               │               }
+     │               │            }
+     │               │
+     │               │
+     │               ├── dtos : Chứa các đối tượng DTO (Data Transfer Objects) để chuyển dữ liệu giữa các tầng khác nhau trong ứng dụng. Các lớp DTO giúp giảm bớt dữ liệu không cần thiết khi truyền tải.
+     │               │   └── UserDTO.java : chứa thông tin người dùng như username, email.
+     │               │            public class UserDTO {
+     │               │                 private Long id;
+     │               │                private String username;
+     │               │                private String email;
+     │               │
+     │               │                // Constructors, Getters, Setters
+     │               │            }
+     │               │
+     │               ├── entities : Chứa các lớp entity đại diện cho bảng trong cơ sở dữ liệu. Mỗi entity tương ứng với một bảng, và các thuộc tính của nó tương ứng với các cột trong bảng.
+     │               │   └── User.java
+     │               │   │         @Entity
+     │               │   │         public class User {
+     │               │   │             @Id
+     │               │   │             @GeneratedValue(strategy = GenerationType.IDENTITY)
+     │               │   │             private Long id;
+     │               │   │
+     │               │   │             @Column(nullable = false, unique = true)
+     │               │   │             private String username;
+     │               │   │
+     │               │   │             @Column(nullable = false)
+     │               │   │             private String password;
+     │               │   │
+     │               │   │            private String email;
+     │               │   │
+     │               │   │            // Getters, Setters
+     │               │   │       }
+     │               │   └── Role.java
+     │               │
+     │               ├── exceptions : Chứa các lớp để xử lý các ngoại lệ (exception) tùy chỉnh. Điều này giúp tổ chức mã nguồn liên quan đến việc xử lý lỗi.
+     │               │   └── CustomException.java
+     │               │
+     │               ├── repositories : Chứa các lớp repository để giao tiếp với cơ sở dữ liệu. Các repository được khai báo như là interface và mở rộng JpaRepository hoặc CrudRepository.
+     │               │   └── UserRepository.java
+     │               │   │         @Repository
+     │               │   │         public interface UserRepository extends JpaRepository<User, Long> {
+     │               │   │             Optional<User> findByUsername(String username);
+     │               │   │         }
+     │               │   └── RoleRepository.java
+     │               │
+     │               ├── services : Chứa các lớp service thực hiện logic nghiệp vụ chính. Service có thể gọi các repository để truy vấn hoặc lưu dữ liệu vào cơ sở dữ liệu. Các lớp service được đánh dấu bằng annotation @Service.
+     │               │   └── UserService.java
+     │               │   │         @Service
+     │               │   │         public class UserService {
+     │               │   │
+     │               │   │            @Autowired
+     │               │   │            private UserRepository userRepository;
+     │               │   │
+     │               │   │            public UserDTO getUserById(Long id) {
+     │               │   │                User user = userRepository.findById(id)
+     │               │   │                    .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+     │               │   │                return new UserDTO(user.getId(), user.getUsername(), user.getEmail());
+     │               │   │            }
+     │               │   │
+     │               │   │            public UserDTO createUser(UserDTO userDTO) {
+     │               │   │                User user = new User();
+     │               │   │                user.setUsername(userDTO.getUsername());
+     │               │   │                 user.setPassword(PasswordUtil.encode(userDTO.getPassword())); // Mã hóa mật khẩu
+     │               │   │                 user.setEmail(userDTO.getEmail());
+     │               │   │                 user = userRepository.save(user);
+     │               │   │                 return new UserDTO(user.getId(), user.getUsername(), user.getEmail());
+     │               │   │             }
+     │               │   │         }
+     │               │   └── AuthService.java
+     │               │
+     │               └── utils
+     │                   └── PasswordUtil.java
+     │                   └── JWTUtil.java
+     │
+     ├── resources : Chứa các tài nguyên tĩnh (static) như hình ảnh, CSS, JavaScript, và các file HTML nếu sử dụng template engine như Thymeleaf.
+     │   │           Chứa file cấu hình application.properties hoặc application.yml để định nghĩa các cấu hình cần thiết cho ứng dụng (cấu hình database, cổng server, v.v.).
+     │   ├── static
+     │   │   └── (css, js, images)
+     │   ├── templates
+     │   │   └── (HTML files if using Thymeleaf)
+     │   └── application.properties
+     │           spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+     │           spring.datasource.username=root
+     │           spring.datasource.password=password
+     │           spring.jpa.hibernate.ddl-auto=update
+     │           server.port=8080
+     │
+     └── test : Thư mục này chứa các bài kiểm tra (unit tests, integration tests) của ứng dụng. Nó tuân theo cấu trúc tương tự như thư mục main/java để tổ chức các bài kiểm tra cho từng lớp.
+         ├── java
+         │   └── com
+         │       └── example
+         │           └── myproject
+         │               └── (unit and integration tests)
+         └── resources
+             └── (test-specific resources)
