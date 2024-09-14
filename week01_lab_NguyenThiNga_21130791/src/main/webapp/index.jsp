@@ -3,14 +3,16 @@
 <html>
 <head>
   <title>Title</title>
+  <meta charset="ISO-8859-1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<%--<jsp:include page="./common/header.jsp"></jsp:include>--%>
+<jsp:include page="./common/header.jsp"></jsp:include>
   <div class="container col-md-5 col-md-offset-3" style="overflow: auto">
     <h1 style="text-align: center">Login Form</h1>
     <form action="controller" method="get">
       <input type="hidden" name="action" value="login"/>
+
       <div class="form-group">
         <label>Account ID:</label> <input type="text" class="form-control" id="accountId" placeholder="Account ID" name="accountId" required>
       </div>
@@ -22,7 +24,7 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
-<%--<jsp:include page="./common/footer.jsp"></jsp:include>--%>
+<jsp:include page="./common/footer.jsp"></jsp:include>
 
 </body>
 </html>
