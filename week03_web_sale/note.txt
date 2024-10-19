@@ -1,0 +1,11 @@
+One - to - many
+- Product - ProductImage
+- Order - OrderDetail
+- Employee - Order
+- Customer - Order
+- Product - OrderDetail
+Many - to - many
+One - to - one
+Product - ProductPrice
+
+ENUM

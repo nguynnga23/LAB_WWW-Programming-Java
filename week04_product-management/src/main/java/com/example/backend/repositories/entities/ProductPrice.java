@@ -1,4 +1,4 @@
-package backend.repositories.entities;
+package com.example.backend.repositories.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

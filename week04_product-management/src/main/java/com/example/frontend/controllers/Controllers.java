@@ -1,6 +1,5 @@
-package frontend.controllers;
+package com.example.frontend.controllers;
 
-import com.example.frontend.models.ProductModel;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,8 +11,8 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers", value = "/controllers")
 public class Controllers extends HttpServlet {
-    @Inject
-    private ProductModel productModel;
+//    @Inject
+//    private ProductModel productModel;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

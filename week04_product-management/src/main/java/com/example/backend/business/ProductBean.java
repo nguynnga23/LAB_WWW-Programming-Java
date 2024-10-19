@@ -1,4 +1,4 @@
-package backend.business;
+package com.example.backend.business;
 
 import com.example.backend.repositories.entities.Product;
 import jakarta.ejb.Stateless;
@@ -8,7 +8,7 @@ import jakarta.persistence.PersistenceContext;
 import java.util.List;
 @Stateless
 public class ProductBean implements ProductBeanRemote {
-    @PersistenceContext(unitName = "lab_week_4")
+//    @PersistenceContext(unitName = "lab_week_4")
     private EntityManager em;
 
     @Override

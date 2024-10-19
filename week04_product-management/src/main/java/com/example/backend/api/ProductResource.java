@@ -1,4 +1,4 @@
-package backend.api;
+package com.example.backend.api;
 
 import com.example.backend.business.ProductBeanRemote;
 import com.example.backend.repositories.entities.Product;

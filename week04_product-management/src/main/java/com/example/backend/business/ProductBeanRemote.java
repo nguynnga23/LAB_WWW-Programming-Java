@@ -1,4 +1,4 @@
-package backend.business;
+package com.example.backend.business;
 
 import com.example.backend.repositories.entities.Product;
 
