@@ -47,7 +47,7 @@
 <div class="wrapper">
     <%--        <h2>21130791 - Nguyễn Thị Nga</h2><br/>--%>
     <div class="nav-list">
-        <a href="loaithuoc?action=dsloaithuoc">Danh sách các loại thuốc</a> <span style="color: white">  |  </span>
+        <a href="loaithuoc?action=dsloaithuoc&id=">Danh sách các loại thuốc</a> <span style="color: white">  |  </span>
         <a href="thuoc?action=dsthuoc">Danh sách thuốc</a><span style="color: white">  |  </span>
         <a href="thuoc?action=add">Thêm thuốc mới</a>
     </div>
