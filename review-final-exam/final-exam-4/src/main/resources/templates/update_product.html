@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Edit product</h2>
+<div>
+    <form>
+        Code : <input th:value="${product.code}" name="code"/><br/>
+        Name : <input th:value="${product.name}" name="name"/><br/>
+        Description : <input th:value="${product.description}" name="description"/><br/>
+        Register Date : <input th:value="${product.registerDate}" name="registerDate"/><br/>
+        Price : <input th:value="${product.price}" name="price"/><br/>
+    </form>
+</div>
+</body>
+</html>

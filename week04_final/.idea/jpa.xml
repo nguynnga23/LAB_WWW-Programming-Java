@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JpaBuddyIdeaProjectConfig" useNamedParameters="false">
-    <option name="defaultUnitInitialized" value="true" />
-    <option name="reLastEntityCreationPackage" value="src/main/java/com/example/backend/repositories/entities" />
-    <option name="renamerInitialized" value="true" />
-    <option name="reverseEngineeringLastDbConnectionId" value="3c63dbfb-9d03-42a7-82ca-391141ddc0c0" />
-  </component>
-</project>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Report 1</h2>
+<div>
+    <form action="/find-accounts-balance">
+        <label>From</label>
+        <input type="text" name="from" required/>
+        <label>To</label>
+        <input type="text" name="to" required/>
+        <button>Search</button>
+    </form>
+</div>
+<br>
+<table>
+    <thead>
+    <th>Customer</th>
+    <th>Balance</th>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accounts}">
+        <td th:text="${account.customer.name}"></td>
+        <td th:text="${account.balance}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

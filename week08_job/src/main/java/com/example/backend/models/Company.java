@@ -13,7 +13,8 @@ import java.util.Set;
 @ToString(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "company", uniqueConstraints = {
-        @UniqueConstraint(name = "UK_rvp2hunsq4sgmpxe3a7i1ym3m", columnNames = {"address"})
+        @UniqueConstraint(name = "UK_rvp2hunsq4sgmpxe3a7i1ym3m", columnNames = {"address"}),
+        @UniqueConstraint(columnNames = {"email"})
 })
 public class Company {
     @Id
@@ -39,6 +40,9 @@ public class Company {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
+
+    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+    private User user;
 
     @OneToMany(mappedBy = "company")
     private Set<Job> jobs = new LinkedHashSet<>();

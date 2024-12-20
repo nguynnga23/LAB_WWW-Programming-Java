@@ -31,9 +31,7 @@ public class Skill {
     private SkillType type;
 
     @OneToMany(mappedBy = "skill")
-    private Set<CandidateSkill> candidateSkills = new LinkedHashSet<>();
-
+    private Set<CandidateSkill> candidateSkills;
     @OneToMany(mappedBy = "skill")
-    private Set<JobSkill> jobSkills = new LinkedHashSet<>();
-
+    private Set<JobSkill> jobSkills;
 }

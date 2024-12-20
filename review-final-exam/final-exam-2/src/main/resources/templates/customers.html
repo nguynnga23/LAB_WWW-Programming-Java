@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<li sec:authorize="isAuthenticated()" class="nav-item">
+    <form th:action="@{/logout}" method="post" id="logoutForm" style="display: none;">
+        <!-- Đây là form ẩn để thực hiện yêu cầu POST -->
+    </form>
+    <a href="#" class="nav-link" onclick="document.getElementById('logoutForm').submit();">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+    </a>
+</li>
+
+<h2>List Customers</h2>
+<table>
+    <thead>
+        <th>Customer id</th>
+        <th>Customer name</th>
+        <th>Customer address</th>
+        <th>Customer email</th>
+        <th>Customer birthday</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.address}"></td>
+            <td th:text="${customer.email}"></td>
+            <td th:text="${customer.dob}"></td>
+            <td>
+                <a th:href="@{detail/{id}(id=${customer.id})}">View Detail</a>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+</body>
+</html>

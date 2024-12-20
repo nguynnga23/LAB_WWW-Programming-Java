@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h3>List product</h3>
+    <table>
+        <thead>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Register Date</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+        <tr th:each="product, iStat:${productPage.content}">
+            <td th:text="${product.code}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.description}"></td>
+            <td th:text="${product.registerDate}"></td>
+            <td th:text="${product.registerDate}"></td>
+            <td th:text="${product.category.name}"></td>
+            <td>
+                <a th:href="@{/edit/{id}(id=${product.id})}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div style="color: black; float: left;
+padding: 5px 5px; text-decoration: none; display: inline-block;" th:if="${productPage.totalPages>0}"
+     th:each="pageNumbers:${pageNumbers}">
+    <a th:href="@{/products(size=${productPage.size}, page=${pageNumbers})}" th:text="${pageNumbers}"
+       th:class="${pageNumber == productPage.number+1}?active"></a>
+</div>
+</body>
+</html>

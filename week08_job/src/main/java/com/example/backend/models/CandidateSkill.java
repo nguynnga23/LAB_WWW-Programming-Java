@@ -31,5 +31,4 @@ public class CandidateSkill {
     @Enumerated
     @Column(name = "skill_level", nullable = false)
     private SkillLevel skillLevel;
-
 }
